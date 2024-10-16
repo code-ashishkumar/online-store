@@ -31,7 +31,7 @@ const SearchBar: React.FC = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="w-full  p-3 border border-gray-300 rounded-md shadow-sm bg-white focus:outline-none"
+            className="w-full  p-3 border border-gray-300 rounded-md  bg-white focus:outline-none"
           />
         
       </motion.div>)}</AnimatePresence>

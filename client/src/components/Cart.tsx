@@ -67,9 +67,9 @@ const CartSidebar: React.FC = () => {
             animate={{ x: 0, opacity: 1 }} // Slide in from the right
             exit={{ x: '100%', opacity: 0 }} // Slide out to the right
             transition={{
-              type: 'spring', // Spring animation for bouncy effect
+              // type: 'spring', // Spring animation for bouncy effect
               stiffness: 300,
-              damping: 30,
+              damping: 40,
               opacity: { duration: 0.3 },
             }}
             className="fixed top-0 right-0 w-80 h-full bg-gradient-to-tr from-white via-gray-50 to-gray-200 shadow-xl z-50 flex flex-col"

@@ -19,6 +19,7 @@ import { FiX } from 'react-icons/fi'; // Icons from react-icons
 import CartSidebar from './Cart';
 import SearchBar from './Search';
 import classnames from "classnames";
+import useScroll from "../hooks/useScroll"
 
 const products = [
   {
@@ -85,16 +86,18 @@ export default function Header() {
     };
   }, []);
 
+  useScroll(isMobileMenuOpen)
+
   console.log(isSticky)
 
 
   return (
     <><div className="bg-black p-2 w-full text-center text-white text-sm">
       <h6> Newly Launched</h6>
-    </div><header   className={classnames(
-          'navbar bg-white shadow-md w-full top-0 z-50 transition-all duration-300 ease-in-out',
-          { fixed: isSticky }
-        )}>
+    </div><header className={classnames(
+      'navbar bg-white shadow-md w-full top-0 z-50 transition-all duration-300 ease-in-out',
+      { fixed: isSticky }
+    )}>
 
         <div className="container mx-auto px-11 flex items-center justify-between h-16">
           {/* Logo */}
