@@ -3,7 +3,7 @@ import Layout from './Layout';
 
 function HighlightsLanding() {
   return (
-    <Layout>
+   
       <div className="grid grid-cols-12 gap-4 relative pt-4">
         <div className="overflow-hidden relative text-white col-span-12 md:col-span-4 h-340">
           <img
@@ -34,7 +34,6 @@ function HighlightsLanding() {
           />
         </div>
       </div>
-    </Layout>
   );
 }
 

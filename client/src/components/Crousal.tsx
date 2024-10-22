@@ -11,12 +11,8 @@ const Carousel = () => {
 
   const images = [
     {
-      src: 'https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      src: 'https://media.istockphoto.com/id/1338067000/photo/fashion-studio-shot-of-a-blonde-model-woman-in-a-suit-isolated-at-the-brown-studio-background.jpg?s=2048x2048&w=is&k=20&c=tgIPC_P90oAOgPh1GLcHK-3AxS2Sa2wnRfdKV7yu81A=',
       text: 'New Arrival Fasion Collection',
-    },
-    {
-      src: 'https://image.made-in-china.com/2f0j00zbKlfvVBrZRJ/Custom-T-Shirt-100-Cotton-310-Grams-Tshirt-Clothing-Shirts.webp',
-      text: '',
     },
   ];
 
@@ -27,7 +23,7 @@ const Carousel = () => {
           {images.map((image, index) => (
             <div className="embla__slide relative" key={index}>
               <img
-                className="embla__slide__img w-full "
+                className="embla__slide__img object-top     w-full h-[calc(100vh-90px)]"
                 src={image.src}
                 alt={`Slide ${index}`}
               />

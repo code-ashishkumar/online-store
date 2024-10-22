@@ -1,8 +1,9 @@
 import React from 'react';
 
-function Layout({ children }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function Layout({ children } : any) {
   return (
-    <div className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+    <div className="space-y-11 py-6 px-5 lg:py-7 lg:px-12">
       {children}
     </div>
   );

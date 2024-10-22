@@ -46,7 +46,7 @@ function ProductLanding() {
   ];
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
+      <div className="">
         <h2 className="text-2xl  tracking-tight text-gray-900">
           Feature products
         </h2>
