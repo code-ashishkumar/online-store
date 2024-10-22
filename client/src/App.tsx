@@ -7,6 +7,7 @@ import Layout from './components/Layout';
 import NewArrival from './components/NewArrival';
 import ProductGrid from './components/Product';
 import ProductCrousel from './components/ProductCrousel';
+import ProductInfo from './components/ProductInfo';
 import Promo from './components/Promo';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <ProductGrid />
         <Collection />
       </Layout>
+      <ProductInfo/>
       <Footer />
     </>
   );

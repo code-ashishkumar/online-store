@@ -6,7 +6,7 @@ const Button = ({ title, dark = false }: any) => {
   return (
     <button
       className={classNames(
-        'border border-black bg-black text-white hover:bg-black hover:text-white transition duration-100 hover:delay-20 py-2 px-6',
+        'border border-black w-full bg-black text-white hover:bg-black hover:text-white transition duration-100 hover:delay-20 py-2 px-6',
         {
           'bg-black': dark,
           'text-black': !dark,
