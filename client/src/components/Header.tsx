@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { FiX } from 'react-icons/fi'; // Icons from react-icons
-import { useScroll } from '../hooks/useScroll';
+import { useScroll } from '../hooks/useScroll.ts';
 import CartSidebar from './Cart';
 import SearchBar from './Search';
 
@@ -52,7 +52,6 @@ export default function Header() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [acitve, setAcitve] = useState(null);
-  const [menuLocked, setMenuLocked] = useState(false);
 
   // Toggle the mobile menu
   const toggleMobileMenu = () => {
@@ -60,19 +59,8 @@ export default function Header() {
   };
 
   const onMenuMouseEnter = (index: number) => {
-    debugger;
-    // setAcitve(index);
-
     setAcitve(index);
   };
-
-  const handleMouseLeave = () => {
-    setTimeout(() => {
-      setAcitve(null);
-    }, 2000);
-  };
-
-  console.log('acitve ', acitve);
 
   const [isSticky, setIsSticky] = useState(false);
 
