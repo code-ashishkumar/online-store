@@ -1,4 +1,3 @@
-import Button from './Button';
 
 type Product = {
   id: number;

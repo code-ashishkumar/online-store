@@ -1,10 +1,9 @@
-import React from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-import Fade from 'embla-carousel-fade';
 import Autoplay from 'embla-carousel-autoplay';
+import Fade from 'embla-carousel-fade';
+import useEmblaCarousel from 'embla-carousel-react';
 
 const Carousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 }, [
+  const [emblaRef] = useEmblaCarousel({ loop: true, duration: 30 }, [
     Autoplay({ playOnInit: true, delay: 2000 }),
     Fade(),
   ]);

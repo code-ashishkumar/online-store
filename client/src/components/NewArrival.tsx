@@ -70,7 +70,7 @@ export const products = [
   },
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 const NewArrival: React.FC<PropType> = ({ header, description }: any) => {
   const OPTIONS: EmblaOptionsType = { align: 'start', dragFree: true };
   const [emblaRef] = useEmblaCarousel(OPTIONS);
