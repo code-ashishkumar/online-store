@@ -8,6 +8,7 @@ import { FiX } from 'react-icons/fi'; // Icons from react-icons
 import { useScroll } from '../hooks/useScroll.ts';
 import CartSidebar from './Cart';
 import SearchBar from './Search';
+import { Link, useNavigate } from 'react-router-dom';
 
 // const products = [
 //   {
@@ -83,11 +84,17 @@ export default function Header() {
   useScroll(isMobileMenuOpen);
 
   const menuItems = [
-    { label: 'MEN', submenu: ['Shirts', 'Pants', 'Accessories'] },
-    { label: 'WOMEN', submenu: ['Dresses', 'Shoes', 'Bags'] },
-    { label: 'ABOUT', submenu: ['Our Story', 'Mission', 'Team'] },
-    { label: 'BLOG', submenu: ['Latest News', 'Trends', 'Tips'] },
+    { label: 'MEN', link: 'MEN', submenu: ['Shirts', 'Pants', 'Accessories'] },
+    { label: 'WOMEN', link: 'WOMEN', submenu: ['Dresses', 'Shoes', 'Bags'] },
+    {
+      label: 'ABOUT',
+      link: 'ABOUT',
+      submenu: ['Our Story', 'Mission', 'Team'],
+    },
+    { label: 'BLOG', link: 'BLOG', submenu: ['Latest News', 'Trends', 'Tips'] },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -106,7 +113,9 @@ export default function Header() {
         >
           {/* Logo */}
           <div className="hidden lg:block  font-bold">
-            <h6>Logo</h6>
+            <h6 onClick={() => navigate('/')} className="cursor-pointer">
+              Logo
+            </h6>
           </div>
           <button
             onClick={toggleMobileMenu}
@@ -164,15 +173,14 @@ export default function Header() {
                         ></motion.div>
                       )}
                       {item.submenu.map((submenuItem, subIndex) => (
-                        <a
+                        <Link
                           key={subIndex}
-                          href="#!"
                           className="block text-gray-700 hover:text-black py-1"
-                          // onMouseEnter={() => onMenuMouseEnter(index)} // Keep dropdown open when hovering over it
+                          to={`/product/${submenuItem}`}
                           // onMouseLeave={() => setAcitve(null)}
                         >
                           {submenuItem}
-                        </a>
+                        </Link>
                       ))}
                     </motion.div>
                   )}
@@ -218,44 +226,53 @@ export default function Header() {
         {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.nav
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-              className="fixed top-0 left-0 w-64 h-full bg-white shadow-md z-50 flex flex-col p-6 md:hidden"
-            >
-              {/* Close Menu Button */}
-              <button onClick={toggleMobileMenu} className="self-end mb-4">
-                <FiX className="text-2xl text-gray-700" />
-              </button>
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40" // Blur background with black overlay
+                onClick={toggleMobileMenu} // Close search bar when clicking outside
+              />
+              <motion.nav
+                initial={{ x: '-100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '-100%' }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                className="fixed top-0 left-0 w-64 h-full bg-white shadow-md z-50 flex flex-col p-6 md:hidden"
+              >
+                {/* Close Menu Button */}
+                <button onClick={toggleMobileMenu} className="self-end mb-4">
+                  <FiX className="text-2xl text-gray-700" />
+                </button>
 
-              {/* Mobile Nav Links */}
-              <a
-                href="#home"
-                className="py-2 text-gray-700 hover:text-gray-900"
-              >
-                Home
-              </a>
-              <a
-                href="#shop"
-                className="py-2 text-gray-700 hover:text-gray-900"
-              >
-                Shop
-              </a>
-              <a
-                href="#about"
-                className="py-2 text-gray-700 hover:text-gray-900"
-              >
-                About
-              </a>
-              <a
-                href="#contact"
-                className="py-2 text-gray-700 hover:text-gray-900"
-              >
-                Contact
-              </a>
-            </motion.nav>
+                {/* Mobile Nav Links */}
+                <a
+                  href="#home"
+                  className="py-2 text-gray-700 hover:text-gray-900"
+                >
+                  Home
+                </a>
+                <a
+                  href="#shop"
+                  className="py-2 text-gray-700 hover:text-gray-900"
+                >
+                  Shop
+                </a>
+                <a
+                  href="#about"
+                  className="py-2 text-gray-700 hover:text-gray-900"
+                >
+                  About
+                </a>
+                <a
+                  href="#contact"
+                  className="py-2 text-gray-700 hover:text-gray-900"
+                >
+                  Contact
+                </a>
+              </motion.nav>
+            </>
           )}
         </AnimatePresence>
       </header>

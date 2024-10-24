@@ -2,6 +2,7 @@ import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import React from 'react';
 import NewArrivalCard from './NewArrivalCard';
+import Button from './Button';
 
 type PropType = {
   options?: EmblaOptionsType;
@@ -15,7 +16,8 @@ export const products = [
     price: 'R 2,695.00',
     image:
       'https://cdn.pixabay.com/photo/2024/05/25/05/34/ai-generated-8786356_1280.jpg',
-      subImage:   'https://media.istockphoto.com/id/1321058053/photo/pretty-short-haired-brunette-woman-in-beige-business-smart-casual-suit-and-skeakers-standing.jpg?s=612x612&w=0&k=20&c=JAg-zsWKWoHAFgy1Ti9rsaZx4wvcVpLhUCncq-u5T8o=',
+    subImage:
+      'https://media.istockphoto.com/id/1321058053/photo/pretty-short-haired-brunette-woman-in-beige-business-smart-casual-suit-and-skeakers-standing.jpg?s=612x612&w=0&k=20&c=JAg-zsWKWoHAFgy1Ti9rsaZx4wvcVpLhUCncq-u5T8o=',
     sizes: [], // No sizes for this product
   },
   {
@@ -25,7 +27,8 @@ export const products = [
     price: 'R 650.00',
     image:
       'https://cdn.pixabay.com/photo/2024/05/13/04/47/ai-generated-8758048_1280.jpg',
-      subImage:   'https://media.istockphoto.com/id/1436367040/photo/vertical-confident-businesswoman-in-formal-stylish-outfit-with-jacket-on-shoulders.jpg?s=612x612&w=0&k=20&c=fenlqC0eIxwrLTctT_gtyPPr3DTY_ZVgH7lYR1bjJpk=',
+    subImage:
+      'https://media.istockphoto.com/id/1436367040/photo/vertical-confident-businesswoman-in-formal-stylish-outfit-with-jacket-on-shoulders.jpg?s=612x612&w=0&k=20&c=fenlqC0eIxwrLTctT_gtyPPr3DTY_ZVgH7lYR1bjJpk=',
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
   },
   {
@@ -35,7 +38,8 @@ export const products = [
     price: 'R 850.00',
     image:
       'https://cdn.pixabay.com/photo/2023/09/16/16/00/woman-8257060_1280.jpg',
-      subImage:    'https://media.istockphoto.com/id/2147562047/photo/shooting-for-the-outerwear-catalog-red-haired-beauty-in-a-beige-full-length-coat-in-the.jpg?s=612x612&w=0&k=20&c=JODnMm0rVAFnWiJOAcug-WXevk6xC_5ZN5awFW7NPwo=',
+    subImage:
+      'https://media.istockphoto.com/id/2147562047/photo/shooting-for-the-outerwear-catalog-red-haired-beauty-in-a-beige-full-length-coat-in-the.jpg?s=612x612&w=0&k=20&c=JODnMm0rVAFnWiJOAcug-WXevk6xC_5ZN5awFW7NPwo=',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
   },
   {
@@ -45,7 +49,8 @@ export const products = [
     price: 'R 795.00',
     image:
       'https://media.istockphoto.com/id/1186159219/photo/attractive-emotional-elegant-woman-posing-in-beige-coat-on-grey.jpg?s=612x612&w=0&k=20&c=jwTs0J300r4JnYXSbyiV3nf0f5MvnLxXSiasjxbFFdo=',
-      subImage:     'https://media.istockphoto.com/id/2177193469/photo/pretty-woman-in-light-clothes-on-isolated-background-touches-hair-on-her-head-with-her-hand.jpg?s=612x612&w=0&k=20&c=tEUhaCIYYTsHecw5D0y0CdvKrXsejvey8Pm1-n5dbLw=',
+    subImage:
+      'https://media.istockphoto.com/id/2177193469/photo/pretty-woman-in-light-clothes-on-isolated-background-touches-hair-on-her-head-with-her-hand.jpg?s=612x612&w=0&k=20&c=tEUhaCIYYTsHecw5D0y0CdvKrXsejvey8Pm1-n5dbLw=',
     sizes: [],
   },
   {
@@ -55,7 +60,8 @@ export const products = [
     price: 'R 795.00',
     image:
       'https://media.istockphoto.com/id/1055658428/photo/portrait-of-young-woman-in-autumn-coat.jpg?s=612x612&w=0&k=20&c=VW3xf2hflHS9huo32K7qgP1N3JJpo7ZxIuirTFdPrVs=',
-      subImage:      'https://media.istockphoto.com/id/1063057012/photo/photo-of-young-beautiful-woman.jpg?s=612x612&w=0&k=20&c=5PwoVSoXFmEUZEEiz5hWSC7MCiRHCvzuVVo1vMrUYzM=',
+    subImage:
+      'https://media.istockphoto.com/id/1063057012/photo/photo-of-young-beautiful-woman.jpg?s=612x612&w=0&k=20&c=5PwoVSoXFmEUZEEiz5hWSC7MCiRHCvzuVVo1vMrUYzM=',
     sizes: [],
   },
   {
@@ -64,8 +70,9 @@ export const products = [
     catagory: 'ACCESSERIES',
     price: 'R 795.00',
     image:
-    'https://media.istockphoto.com/id/990534538/photo/beautiful-blonde-woman-posing-in-a-pink-coat-on-a-beige-background-fashion-show-clothing-woman.jpg?s=612x612&w=0&k=20&c=yNqX5CfwYWSkX-4P2LBjftMa5-s-jg0LwxZN5-0Kv8Y=',
-      subImage:      'https://media.istockphoto.com/id/2152702707/photo/hey-look-at-me-concept-a-spectacular-elegant-female-model-in-a-coat-poses-on-a-white.jpg?s=612x612&w=0&k=20&c=yfJmLvdk8HcmBoahUcpgYIwI-6zRFPOAgf6-z-yvPGM=',
+      'https://media.istockphoto.com/id/990534538/photo/beautiful-blonde-woman-posing-in-a-pink-coat-on-a-beige-background-fashion-show-clothing-woman.jpg?s=612x612&w=0&k=20&c=yNqX5CfwYWSkX-4P2LBjftMa5-s-jg0LwxZN5-0Kv8Y=',
+    subImage:
+      'https://media.istockphoto.com/id/2152702707/photo/hey-look-at-me-concept-a-spectacular-elegant-female-model-in-a-coat-poses-on-a-white.jpg?s=612x612&w=0&k=20&c=yfJmLvdk8HcmBoahUcpgYIwI-6zRFPOAgf6-z-yvPGM=',
     sizes: [],
   },
 ];
@@ -107,13 +114,7 @@ const NewArrival: React.FC<PropType> = ({ header, description }: any) => {
         </div>
       </div>
       <div className={'w-full text-center'}>
-        <button
-          className={
-            'bg-black  xsm:w-[300px] lg:w-[400px]   mx-auto text-white py-2 px-4 hover:bg-gray-800'
-          }
-        >
-          SHOP ALL NEW ARRIVALS
-        </button>
+        <Button {...{ title: 'SHOP ALL NEW ARRIVALS', dark: true }} />
       </div>
     </div>
   );
