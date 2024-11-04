@@ -31,7 +31,7 @@ const SearchBar: React.FC = () => {
     <div className="">
       {/* Search Icon */}
       <MagnifyingGlassIcon
-        className="w-[22px] h-[22px] lg:h-6 lg:w-6 cursor-pointer"
+        className="w-[22px] h-[22px]  cursor-pointer"
         onClick={toggleSearchBar}
       />
 

@@ -10,6 +10,7 @@ import Promo from './Promo';
 function HomePage() {
   return (
     <div>
+      
       <Carousel />
       {/* <Details /> */}
       <Layout>

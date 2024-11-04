@@ -252,11 +252,11 @@ function ProductInfo() {
           //   <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           <div
             className="group  relative"
-            onClick={() =>
-              navigate(`/product/:${product.title}/:${product.id}`)
-            }
+          
           >
-            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden  bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-70">
+            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden  bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-70"   onClick={() =>
+              navigate(`/product/:${product.title}/:${product.id}`)
+            }>
               <img
                 src={product.image}
                 alt="Front of men&#039;s Basic Tee in black."
