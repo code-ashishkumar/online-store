@@ -3,7 +3,6 @@
 import {
   HeartIcon,
   UserCircleIcon,
-  UserIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import classnames from 'classnames';
@@ -210,11 +209,13 @@ export default function Header() {
     };
 
     const handleClickOutside = (event: MouseEvent) => {
-      const path = event.composedPath && event.composedPath(); // Browser compatibility check for event path
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const path: any = event.composedPath && event.composedPath(); // Browser compatibility check for event path
       if (
         path &&
         !path.some(
-          (element) => element instanceof Element && element?.dataset?.dropdown,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (element: any) => (element as any) && element?.dataset?.dropdown,
         )
       ) {
         setIsSortingOpen(false);

@@ -7,6 +7,7 @@ export interface CartItem {
   quantity: number;
   image: string; // Add an image for each item
   color: string; // Additional item details, if needed
+  description: string;
 }
 
 interface CartState {
