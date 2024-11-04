@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 import Layout from './Layout';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const images: any = [
   'https://media.istockphoto.com/id/1338067000/photo/fashion-studio-shot-of-a-blonde-model-woman-in-a-suit-isolated-at-the-brown-studio-background.jpg?s=2048x2048&w=is&k=20&c=tgIPC_P90oAOgPh1GLcHK-3AxS2Sa2wnRfdKV7yu81A=',
 ];
@@ -164,7 +165,7 @@ const ReviewSection = () => {
   );
 };
 
-const ProductGallery: React.FC = ({
+const ProductGallery = ({
   images,
   magnificationScale = 3,
 }: ImageMagnifierProps) => {
@@ -183,7 +184,7 @@ const ProductGallery: React.FC = ({
       description: 'description',
       quantity: 1,
       image: '',
-      color: ''
+      color: '',
     });
   };
 
@@ -381,7 +382,8 @@ import AddToCartButton from './AddToCartButton';
 import WishlistButton from './WishlistButton';
 
 interface ImageMagnifierProps {
-  images: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  images?: any;
   magnifierSize?: number;
   magnificationScale?: number;
 }
@@ -411,7 +413,7 @@ const ProductDetails = () => {
 
   return (
     <Layout>
-      <ProductGallery images={images} />
+      <ProductGallery {...{ images: images }} />
       <ReviewSection />
       <ProductCrousel />
     </Layout>
