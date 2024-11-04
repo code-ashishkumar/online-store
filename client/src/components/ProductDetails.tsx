@@ -389,28 +389,6 @@ interface ImageMagnifierProps {
 }
 
 const ProductDetails = () => {
-  const AccordionFilter = ({ label, children }: any) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-      <div className="border-b w-full">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-full text-left py-2 px-4  text-gray-700"
-        >
-          {label}
-        </button>
-        <motion.div
-          initial={{ height: 0 }}
-          animate={{ height: isOpen ? 'auto' : 0 }}
-          className="overflow-hidden"
-        >
-          <div className="py-2 px-4">{children}</div>
-        </motion.div>
-      </div>
-    );
-  };
-
   return (
     <Layout>
       <ProductGallery {...{ images: images }} />
