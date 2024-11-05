@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Layout from './Layout';
+import { useNavigate } from 'react-router-dom';
 
 const blogPosts = [
   {
@@ -41,6 +42,8 @@ const blogPosts = [
 ];
 
 const BlogSection = () => {
+  const navigate = useNavigate();
+
   return (
     <Layout>
       <div className="max-w-7xl mx-auto text-center">
@@ -61,6 +64,7 @@ const BlogSection = () => {
             className="bg-white  shadow-lg overflow-hidden"
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.1 }}
+            onClick={() => navigate(`/blog-details/?${post.title.toLowerCase().replace(' ', '-')}`)}
           >
             <img
               src={post.image}

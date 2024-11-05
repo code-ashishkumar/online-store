@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Button = ({ title, dark = false, wFull = false, handleOnClick }: any) => {
+const Button = ({ title, dark = false, wFull = false, ...rest }: any) => {
   return (
     <motion.button
       whileTap={{ scale: 0.95 }}
@@ -14,7 +14,7 @@ const Button = ({ title, dark = false, wFull = false, handleOnClick }: any) => {
         'xsm:w-full md:w-[400px]': !wFull,
         'w-full': wFull,
       })}
-      onClick={handleOnClick}
+      {...rest}
     >
       {title}
     </motion.button>

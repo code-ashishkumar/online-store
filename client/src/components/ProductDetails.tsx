@@ -382,7 +382,6 @@ import AddToCartButton from './AddToCartButton';
 import WishlistButton from './WishlistButton';
 
 interface ImageMagnifierProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   images?: any;
   magnifierSize?: number;
   magnificationScale?: number;

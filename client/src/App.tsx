@@ -19,6 +19,7 @@ import CartDetails from './components/CartDetails';
 import Wishlist from './components/Wishlist';
 import About from './components/About';
 import BlogSection from './components/Blogs';
+import BlogDetails from './components/BlogDetails';
 
 function App() {
   // const [path, setPath] = useState("/")
@@ -43,6 +44,8 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<BlogSection />} />
+          <Route path="/blog-details/?" element={<BlogDetails />} />
+
 
           {/* Dynamic route for product */}
           {/* <Route path="/work" element={<Work />} />

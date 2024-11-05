@@ -1,15 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import Button from './Button';
 import Layout from './Layout';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useCartStore } from '../stores/cartStore';
 
 export const products = [
   {
     id: 1,
     title: 'Venture Backpack Cooler - Oasis',
     catagory: 'WALLETS',
-    price: 'R 2,695.00',
+    price: 2695.0,
     image:
       'https://media.istockphoto.com/id/802386776/photo/handsome-young-caucasian-man-smiling-and-posing-with-hands-in-pockets.jpg?s=612x612&w=0&k=20&c=ArSnp7e50kJ1GXDv2v7G5ChcclKIBsbOMcgr57BR0-0=',
     subImage:
@@ -20,7 +22,7 @@ export const products = [
     id: 2,
     title: 'Ladies Outdoor Adventure Tee - Pure Shores',
     catagory: 'BELTS',
-    price: 'R 650.00',
+    price: 650.0,
     image:
       'https://cdn.pixabay.com/photo/2024/05/13/04/47/ai-generated-8758048_1280.jpg',
     subImage:
@@ -31,7 +33,7 @@ export const products = [
     id: 3,
     title: 'Mens Outdoor Adventure Tee - Pure Shores',
     catagory: 'PERFUME',
-    price: 'R 850.00',
+    price: 850.0,
     image:
       'https://cdn.pixabay.com/photo/2023/09/16/16/00/woman-8257060_1280.jpg',
     subImage:
@@ -42,7 +44,7 @@ export const products = [
     id: 4,
     title: 'Ladies Regular Fit Tee - Blue Stripes',
     catagory: 'ACCESSERIES',
-    price: 'R 795.00',
+    price: 795.0,
     image:
       'https://media.istockphoto.com/id/1186159219/photo/attractive-emotional-elegant-woman-posing-in-beige-coat-on-grey.jpg?s=612x612&w=0&k=20&c=jwTs0J300r4JnYXSbyiV3nf0f5MvnLxXSiasjxbFFdo=',
     subImage:
@@ -53,7 +55,7 @@ export const products = [
     id: 5,
     title: 'Ladies Regular Fit Tee - Blue Stripes',
     catagory: 'ACCESSERIES',
-    price: 'R 795.00',
+    price: 795.0,
     image:
       'https://media.istockphoto.com/id/1055658428/photo/portrait-of-young-woman-in-autumn-coat.jpg?s=612x612&w=0&k=20&c=VW3xf2hflHS9huo32K7qgP1N3JJpo7ZxIuirTFdPrVs=',
     subImage:
@@ -64,7 +66,7 @@ export const products = [
     id: 6,
     title: 'Ladies Regular Fit Tee - Blue Stripes',
     catagory: 'ACCESSERIES',
-    price: 'R 795.00',
+    price: 795.0,
     image:
       'https://media.istockphoto.com/id/990534538/photo/beautiful-blonde-woman-posing-in-a-pink-coat-on-a-beige-background-fashion-show-clothing-woman.jpg?s=612x612&w=0&k=20&c=yNqX5CfwYWSkX-4P2LBjftMa5-s-jg0LwxZN5-0Kv8Y=',
     subImage:
@@ -77,6 +79,16 @@ function ProductInfo() {
   const [isSortingOpen, setIsSortingOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Access addItem action from the Zustand store
+  const addItem = useCartStore((state) => state.addItem);
+
+  // Function to handle adding product to cart
+  const handleAddToCart = (products: any) => {
+    console.log(products)
+    // Add product with quantity to cart
+    addItem({ ...products, price: products.price });
+  };
 
   const url = window.location.pathname;
 
@@ -250,13 +262,13 @@ function ProductInfo() {
         // <ProductCard {...{ product, showAddToCart: true }} />
         return (
           //   <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          <div
-            className="group  relative"
-          
-          >
-            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden  bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-70"   onClick={() =>
-              navigate(`/product/:${product.title}/:${product.id}`)
-            }>
+          <div className="group  relative">
+            <div
+              className="aspect-h-1 aspect-w-1 w-full overflow-hidden  bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-70"
+              onClick={() =>
+                navigate(`/product/:${product.title}/:${product.id}`)
+              }
+            >
               <img
                 src={product.image}
                 alt="Front of men&#039;s Basic Tee in black."
@@ -275,7 +287,10 @@ function ProductInfo() {
                 {product.price}
               </p> */}
             </div>
-            <Button {...{ title: 'Add to Cart', dark: true, wFull: true }} />
+            <Button
+              {...{ title: 'Add to Cart', dark: true, wFull: true }}
+              onClick={() => handleAddToCart(product)}
+            />
           </div>
           //   </div>
         );
@@ -447,7 +462,7 @@ function ProductInfo() {
         <div className="w-full items-center flex justify-between space-x-4 ">
           <h1 className="text-4xl">{lastSegment}</h1>
           <div className="relative  flex justify-between ">
-            <button
+            {/* <button
               type="button"
               className="inline-flex bg-slate-100 w-full justify-center gap-x-1.5   px-3 py-2 text-sm  text-gray-900  hover:bg-gray-50"
               id="menu-button"
@@ -469,7 +484,7 @@ function ProductInfo() {
                   clip-rule="evenodd"
                 />
               </svg>
-            </button>
+            </button> */}
             <button
               className="bg-black ml-2 lg:hidden xsm:block px-4  text-white"
               onClick={toggleCart}
