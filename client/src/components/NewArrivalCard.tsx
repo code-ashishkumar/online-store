@@ -7,7 +7,7 @@ function NewArrivalCard({ product, showAddToCart = false }: any) {
   return (
     <div key={product.id} className=" h-[400px] ">
       <img
-        src={isHovered ? product?.subImage : product.image}
+        src={isHovered ? product?.image : product.image}
         alt={product.title}
         className="w-full 
           xsm:h-[216px] 
@@ -20,7 +20,7 @@ function NewArrivalCard({ product, showAddToCart = false }: any) {
         onMouseLeave={() => setIsHovered(false)}
       />
       <div className="min-h-28">
-        <h3 className="text-sm  mb-2">{product.title}</h3>
+        <h3 className="text-sm  mb-2">{product.name}</h3>
         <p className="text-sm text-gray-700 mb-4">{product.price}</p>
       </div>
       {/* {product.sizes.length > 0 && (

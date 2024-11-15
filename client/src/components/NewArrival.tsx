@@ -1,8 +1,10 @@
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NewArrivalCard from './NewArrivalCard';
 import Button from './Button';
+import useDynamicPath from '../hooks/useDynamicPath';
+import { getLatestProducts } from '../services/api-services';
 
 type PropType = {
   options?: EmblaOptionsType;
@@ -82,6 +84,17 @@ const NewArrival: React.FC<PropType> = ({ header, description }: any) => {
   const OPTIONS: EmblaOptionsType = { align: 'start', dragFree: true };
   const [emblaRef] = useEmblaCarousel(OPTIONS);
 
+  // const [path, setPath] = useState("/")
+  const [latestProducts, setlatestProducts] = useState<any>([]);
+ console.log("latestProducts", latestProducts)
+  useEffect(() => {
+    const fetchData = async () => {
+      const productsData = await getLatestProducts();
+      setlatestProducts([]);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="w-full">
       <h2 className="text-center text-2xl font-bold mb-2">New Arrival</h2>
@@ -94,7 +107,7 @@ const NewArrival: React.FC<PropType> = ({ header, description }: any) => {
       </p> */}
       <div className="overflow-hidden w-full " ref={emblaRef}>
         <div className="flex h-full xl:gap-[40px] lg:gap-12 md:gap-5 xsm:gap-10 touch-pan-y touch-pinch-zoom">
-          {products.map((product) => (
+          {latestProducts?.map((product) => (
             <div
               className="
               xsm:flex-[0_0_65%]  

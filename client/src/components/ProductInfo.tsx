@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from './Button';
 import Layout from './Layout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCartStore } from '../stores/cartStore';
+import { getProductsByCatagory } from '../services/api-services';
 
 export const products = [
   {
@@ -85,7 +86,7 @@ function ProductInfo() {
 
   // Function to handle adding product to cart
   const handleAddToCart = (products: any) => {
-    console.log(products)
+    console.log(products);
     // Add product with quantity to cart
     addItem({ ...products, price: products.price });
   };
@@ -124,6 +125,16 @@ function ProductInfo() {
       </div>
     );
   };
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const productsData = await getProductsByCatagory('id');
+      setProducts(productsData);
+    };
+    fetchData();
+  }, []);
 
   const AccordionFilterSidebar = ({ label, children }: any) => {
     const [accordionOpen, setAccordionOpen] = useState(false);
@@ -266,18 +277,18 @@ function ProductInfo() {
             <div
               className="aspect-h-1 aspect-w-1 w-full overflow-hidden  bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-70"
               onClick={() =>
-                navigate(`/product/:${product.title}/:${product.id}`)
+                navigate(`/product/:${product.name}/:${product.id}`)
               }
             >
               <img
-                src={product.image}
+                src={product.image[0]}
                 alt="Front of men&#039;s Basic Tee in black."
                 className="h-[340px] w-full object-cover object-center  lg:w-full"
               />
             </div>
             <div className="pb-6 p-2 flex justify-between">
               <div>
-                <h3 className="text-sm  mb-2">{product.title}</h3>
+                <h3 className="text-sm  mb-2">{product.name}</h3>
                 {/* <h3 className="text-sm  mb-2">{product.title}</h3> */}
                 <p className="text-sm text-gray-700 mb-4">{product.price}</p>
                 {/* <p className="mt-1 text-sm text-gray-500"> {product.color}</p> */}

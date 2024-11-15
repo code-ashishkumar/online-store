@@ -1,34 +1,32 @@
-import { useEffect, useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import Collection from './components/Collection';
-import Carousel from './components/Crousal';
+import About from './components/About';
+import AccountDetails from './components/AccountDetails';
+import BlogDetails from './components/BlogDetails';
+import BlogSection from './components/Blogs';
+import Breadcrumb from './components/BreadCrumb';
+import CartDetails from './components/CartDetails';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import HomePage from './components/HomePage';
-import Layout from './components/Layout';
-import NewArrival from './components/NewArrival';
-import ProductGrid from './components/Product';
-import ProductCrousel from './components/ProductCrousel';
+import Login from './components/Login';
 import ProductDetails from './components/ProductDetails';
 import ProductInfo from './components/ProductInfo';
-import Promo from './components/Promo';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Breadcrumb from './components/BreadCrumb';
-import useDynamicPath from './hooks/useDynamicPath';
-import CartDetails from './components/CartDetails';
+import Register from './components/Register';
 import Wishlist from './components/Wishlist';
-import About from './components/About';
-import BlogSection from './components/Blogs';
-import BlogDetails from './components/BlogDetails';
+import { Sidebar } from './components/Sidebar';
+import useDynamicPath from './hooks/useDynamicPath';
 
 function App() {
-  // const [path, setPath] = useState("/")
-
-  const path = useDynamicPath();
-
+  // Generate breadcrumb items from current location path
+  const path = useDynamicPath()
   return (
     <>
       <Router>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
         <Header />
         {/* <ProductDetails/> */}
         {path === '/' ? null : <Breadcrumb />}
@@ -45,8 +43,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<BlogSection />} />
           <Route path="/blog-details/?" element={<BlogDetails />} />
-
-
+          <Route path="/account-details" element={<AccountDetails />} />
           {/* Dynamic route for product */}
           {/* <Route path="/work" element={<Work />} />
             <Route path="/about" element={<About />} /> */}

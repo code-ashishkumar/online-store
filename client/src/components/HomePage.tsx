@@ -8,6 +8,7 @@ import ProductCrousel from './ProductCrousel';
 import Promo from './Promo';
 
 function HomePage() {
+  
   return (
     <div>
       
