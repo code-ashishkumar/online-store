@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+      font-family: Helvetica;
+      /* font-weight: 400; */
+      src: url(../src/assets/fonts/HelveticaNeueLight.otf) format("otf");
+    }
+}
+
+body {
+    font-family: Helvetica;
+      font-weight: lighter;
+      margin: 0;
+      overflow-x: hidden;
+
+  }
+
+  .highlight-landing-images {
+    img {
+      height: 265px
+    }
+  }
