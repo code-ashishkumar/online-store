@@ -5,15 +5,14 @@ import {
   UserCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import classnames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FiX } from 'react-icons/fi'; // Icons from react-icons
+import { Link, useNavigate } from 'react-router-dom';
 import { useScroll } from '../hooks/useScroll.ts';
 import CartSidebar from './Cart';
 import SearchBar from './Search';
-import { Link, useNavigate } from 'react-router-dom';
-import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
 const CatagoriesTrend = [
   {
@@ -116,41 +115,6 @@ const CatagoriesWomen = [
   },
 ];
 
-const CatagoriesAcc = [
-  {
-    name: 'MEN',
-    href: 'menAcc',
-  },
-  {
-    name: 'Women',
-    href: 'womenAcc',
-  },
-  {
-    name: 'Belts',
-    href: 'belts',
-  },
-  {
-    name: 'Purse',
-    href: 'purse',
-  },
-  {
-    name: 'Bags',
-    href: 'bags',
-  },
-  // {
-  //   name: 'Night',
-  //   href: 'night',
-  // },
-  // {
-  //   name: 'Sports',
-  //   href: 'sports',
-  // },
-];
-
-// const callsToAction = [
-//   { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-//   { name: 'Contact sales', href: '#', icon: PhoneIcon },
-// ];
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [currentMenu, setCurrentMenu] = useState('main'); // Tracks current menu state
@@ -490,8 +454,8 @@ export default function Header() {
         >
           {/* Logo */}
           <div className="hidden lg:block  font-bold">
-            <h6 onClick={() => navigate('/')} className="cursor-pointer">
-              Logo
+            <h6 onClick={() => navigate('/')} className="cursor-pointer text-2xl italic">
+              Fashion
             </h6>
           </div>
           <button
