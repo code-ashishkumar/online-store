@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 'use client';
 
 import {
@@ -13,6 +14,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useScroll } from '../hooks/useScroll.ts';
 import CartSidebar from './Cart';
 import SearchBar from './Search';
+import { getSubCatagories } from '../services/api-services.ts';
 
 const CatagoriesTrend = [
   {
@@ -115,11 +117,12 @@ const CatagoriesWomen = [
   },
 ];
 
-
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [currentMenu, setCurrentMenu] = useState('main'); // Tracks current menu state
   const [openSubItems, setOpenSubItems] = useState({});
   const [direction, setDirection] = useState('right'); // Tracks animation direction
+  const [mensCategory, setMensCategory] = useState([]);
+  const [womensCategory, setWomensCategory] = useState([]);
 
   // Toggle a submenu section within a submenu
   const handleToggleSubItem = (subItem) => {
@@ -169,6 +172,21 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     MEN: ['FEATURED', 'CLOTHING', 'SHOES', 'ACCESSORIES'],
     WOMEN: ['NEW ARRIVALS', 'CLOTHING', 'ACCESSORIES', 'SALE'],
   };
+
+  useEffect(() => {
+    const getMensCatagories = async () => {
+      debugger;
+      const response = await getSubCatagories('674d493b0dc504e127309a16');
+      console.log(response);
+      setMensCategory(response);
+    };
+    getMensCatagories();
+    const getWomensCatagories = async () => {
+      const response = await getSubCatagories('674d49440dc504e127309a18');
+      setWomensCategory(response);
+    };
+    getWomensCatagories();
+  }, []);
 
   return (
     <motion.div
@@ -299,6 +317,8 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSortingOpen, setIsSortingOpen] = useState(false);
   const [acitve, setAcitve] = useState(null);
+  const [mensCategory, setMensCategory] = useState([]);
+  const [womensCategory, setWomensCategory] = useState([]);
 
   // Toggle the mobile menu
   const toggleMobileMenu = () => {
@@ -327,13 +347,28 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const getMensCatagories = async () => {
+      debugger;
+      const response = await getSubCatagories('674d493b0dc504e127309a16');
+      console.log(response);
+      setMensCategory(response);
+    };
+    getMensCatagories();
+    const getWomensCatagories = async () => {
+      const response = await getSubCatagories('674d49440dc504e127309a18');
+      setWomensCategory(response);
+    };
+    getWomensCatagories();
+  }, []);
+
   useScroll(isMobileMenuOpen);
 
   const menuItems = [
     { label: 'TRENDING', link: 'TRENDING', submenu: CatagoriesTrend },
 
-    { label: 'MEN', link: 'MEN', submenu: CatagoriesMen },
-    { label: 'WOMEN', link: 'WOMEN', submenu: CatagoriesWomen },
+    { label: 'MEN', link: 'MEN', submenu: mensCategory },
+    { label: 'WOMEN', link: 'WOMEN', submenu: womensCategory },
     // { label: 'ACCESSESORIES', link: 'ACCESSESORIES', submenu: CatagoriesAcc },
     {
       label: 'ABOUT',
@@ -454,7 +489,10 @@ export default function Header() {
         >
           {/* Logo */}
           <div className="hidden lg:block  font-bold">
-            <h6 onClick={() => navigate('/')} className="cursor-pointer text-2xl italic">
+            <h6
+              onClick={() => navigate('/')}
+              className="cursor-pointer text-2xl italic"
+            >
               Fashion
             </h6>
           </div>
@@ -537,7 +575,7 @@ export default function Header() {
                         <Link
                           key={subIndex}
                           className="block text-gray-700 hover:text-black py-1"
-                          to={`/product/${submenuItem.href}`}
+                          to={`/product/${submenuItem._id}`}
                           // onMouseLeave={() => setAcitve(null)}
                         >
                           {submenuItem.name}

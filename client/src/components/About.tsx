@@ -1,7 +1,16 @@
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import about from '../assets/media/about.mp4';
 
 const About = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.5; // Set playback speed (1.0 is normal speed)
+    }
+  }, []);
+
   return (
     <>
       <motion.div
@@ -10,10 +19,20 @@ const About = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <img
+        {/* <img
           src="https://media.istockphoto.com/id/1338067000/photo/fashion-studio-shot-of-a-blonde-model-woman-in-a-suit-isolated-at-the-brown-studio-background.jpg?s=2048x2048&w=is&k=20&c=tgIPC_P90oAOgPh1GLcHK-3AxS2Sa2wnRfdKV7yu81A="
           alt="About us"
           className="w-full h-[400px] object-cover object-top  shadow-lg"
+        /> */}
+        <video
+          ref={videoRef}
+          className="embla__slide__img object-center w-full h-80"
+          autoPlay
+          src={about}
+          loop
+          controls={false}
+          muted
+          playsInline
         />
       </motion.div>
       <div className="py-6 flex flex-col items-center justify-center px-4">

@@ -1,8 +1,29 @@
 import api from './api';
 
+export const getSubCatagories = async (mainCategoryId) => {
+  try {
+    const response = await api.get(
+      `/categories/${mainCategoryId}/subcategories`,
+    );
+    console.log(response);
+    return response?.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
 export const getProductsByCatagory = async (categoryId) => {
   try {
-    const response = await api.get(`/products/:${categoryId}`);
+    const response = await api.get(`/products/category/${categoryId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
+export const getProductById = async (id) => {
+  try {
+    const response = await api.get(`/products/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);

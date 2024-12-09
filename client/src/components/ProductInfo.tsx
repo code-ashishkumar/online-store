@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Button from './Button';
 import Layout from './Layout';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useCartStore } from '../stores/cartStore';
 import { getProductsByCatagory } from '../services/api-services';
 
@@ -80,7 +80,8 @@ function ProductInfo() {
   const [isSortingOpen, setIsSortingOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const navigate = useNavigate();
-
+  const { product } = useParams();
+  console.log(product);
   // Access addItem action from the Zustand store
   const addItem = useCartStore((state) => state.addItem);
 
@@ -130,11 +131,14 @@ function ProductInfo() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const productsData = await getProductsByCatagory('id');
+      const productsData = await getProductsByCatagory(product);
+      console.log('productsData', productsData);
       setProducts(productsData);
     };
     fetchData();
-  }, []);
+  }, [product]);
+
+  console.log('products', products);
 
   const AccordionFilterSidebar = ({ label, children }: any) => {
     const [accordionOpen, setAccordionOpen] = useState(false);
@@ -267,6 +271,10 @@ function ProductInfo() {
     </div>
   );
 
+  const handleProductInformation = (product) => {
+    navigate(`/product/${product.name}/${product._id}`);
+  };
+
   const ProductList = () => (
     <div className="grid  col-span-3 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8">
       {products.map((product) => {
@@ -276,12 +284,10 @@ function ProductInfo() {
           <div className="group  relative">
             <div
               className="aspect-h-1 aspect-w-1 w-full overflow-hidden  bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-70"
-              onClick={() =>
-                navigate(`/product/:${product.name}/:${product.id}`)
-              }
+              onClick={() => handleProductInformation(product)}
             >
               <img
-                src={product.image[0]}
+                src={product.images[0]}
                 alt="Front of men&#039;s Basic Tee in black."
                 className="h-[340px] w-full object-cover object-center  lg:w-full"
               />

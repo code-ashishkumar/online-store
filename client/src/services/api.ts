@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/api/axiosMiddleware.ts
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-const { API_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env;
 
 const api: AxiosInstance = axios.create({
-  baseURL: API_URL, // Replace with your actual API base URL
+  baseURL: VITE_API_URL, // Replace with your actual API base URL
   timeout: 10000, // Optional timeout for requests
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": 'application/json',
   },
 });
 
@@ -29,7 +30,7 @@ api.interceptors.request.use(
 
 // Response interceptor for handling errors globally
 api.interceptors.response.use(
-  (response: AxiosResponse): AxiosResponse => {
+  (response: AxiosResponse<any>): AxiosResponse<any> => {
     return response; // Pass through successful response
   },
   (error) => {

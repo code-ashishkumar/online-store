@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Layout from './Layout';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -243,6 +243,22 @@ const ProductGallery = ({
     handleMouseLeave();
   };
 
+  const { id } = useParams();
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [product, setProduct] = useState<any>({});
+
+  useEffect(() => {
+    // eslint-disable-next-line no-debugger
+    debugger
+    const fetchData = async () => {
+      const productsData = await getProductById(id);
+      console.log('productsData', productsData);
+      setProduct(productsData);
+    };
+    fetchData();
+  }, [id]);
+
   return (
     <div className="grid py-4 lg:grid-cols-2 xsm:grid-cols-1  gap-[100px]">
       <div className="space-y-4 w-full">
@@ -261,17 +277,17 @@ const ProductGallery = ({
               ref={imageRef}
               src={selectedImage}
               alt="Magnifiable"
-              className=" w-full  h-full object-cover cursor-pointer"
+              className=" w-full  h-full object-cover "
             />
 
-            <div className=" flex lg:flex-col xsm:flex-row  gap-4 py-2">
-              {images.map((image, index) => (
+            <div className=" flex lg:flex-row xsm:flex-row  gap-4 py-2">
+              {product?.images?.map((image, index) => (
                 <motion.img
                   key={index}
                   src={image}
                   alt={`Thumbnail ${index + 1}`}
                   onClick={() => handleThumbnailClick(image)}
-                  className={`w-20 h-20 object-cover cursor-pointer border-2 ${
+                  className={`w-20 h-20 object-cover  border-2 ${
                     selectedImage === image
                       ? 'border-black-400'
                       : 'border-transparent'
@@ -311,9 +327,11 @@ const ProductGallery = ({
       </div>
 
       <div className="w-full ">
-        <h1 className="text-3xl  font-bold">Shoes Reebok Zig Kinetica 3</h1>
+        <h1 className="text-3xl  font-bold">{product.name}</h1>
         <div className="flex flex-col w-full justify-between align-center py-4">
-          <div className="text-2xl font-bold text-gray-900">$199.00</div>
+          <div className="text-2xl font-bold text-gray-900">
+            ${product.price}
+          </div>
           <div className="text-yellow-400 py-1 text-1xl">
             ⭐⭐⭐⭐⭐ 42 reviews
           </div>
@@ -380,6 +398,11 @@ import ProductCrousel from './ProductCrousel';
 import { useCartStore } from '../stores/cartStore';
 import AddToCartButton from './AddToCartButton';
 import WishlistButton from './WishlistButton';
+import {
+  getProductById,
+  getProductsByCatagory,
+} from '../services/api-services';
+import { useParams } from 'react-router-dom';
 
 interface ImageMagnifierProps {
   images?: any;
