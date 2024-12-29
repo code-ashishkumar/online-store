@@ -14,7 +14,6 @@ import ProductDetails from './components/ProductDetails';
 import ProductInfo from './components/ProductInfo';
 import Register from './components/Register';
 import Wishlist from './components/Wishlist';
-import { Sidebar } from './components/Sidebar';
 import useDynamicPath from './hooks/useDynamicPath';
 
 function App() {
